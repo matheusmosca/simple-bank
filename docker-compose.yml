@@ -1,0 +1,25 @@
+version: "3.1"
+
+services:
+  simple_bank_db:
+    container_name: simple_bank_db
+    image: postgres:13.2-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: simple_bank_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: 
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+  api:
+    container_name: simple_bank_api
+    build: .
+    ports:
+      - 3000:3000
+    restart: always
+
+volumes:
+  postgres_data:
