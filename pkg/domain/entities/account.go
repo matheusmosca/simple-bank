@@ -61,14 +61,3 @@ func (a Account) Validate() error {
 	}
 	return nil
 }
-
-// Check if some error belongs to the account domain
-func (a Account) IsDomainError(err error) bool {
-	for _, e := range domainErrors {
-		if e == err {
-			return true
-		}
-	}
-
-	return false
-}
