@@ -14,6 +14,10 @@ func newID() string {
 var (
 	ErrCPFAlreadyExists = errors.New("the cpf is already in use")
 	ErrInvalidCPF       = errors.New("invalid cpf")
+	domainErrors        = []error{
+		ErrCPFAlreadyExists,
+		ErrInvalidCPF,
+	}
 )
 
 type Account struct {
@@ -47,4 +51,15 @@ func NewAccount(name, CPF, secret string) (*Account, error) {
 // TODO hash secret with bcrypt
 func (a Account) Validate() error {
 	return nil
+}
+
+// Check if some error belongs to the account domain
+func (a Account) IsDomainError(err error) bool {
+	for _, e := range domainErrors {
+		if e == err {
+			return true
+		}
+	}
+
+	return false
 }
