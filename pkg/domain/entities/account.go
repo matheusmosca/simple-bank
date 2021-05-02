@@ -2,6 +2,7 @@ package entities
 
 import (
 	"errors"
+	"simple-bank/pkg/common/hash"
 	"time"
 
 	"github.com/google/uuid"
@@ -14,9 +15,11 @@ func newID() string {
 var (
 	ErrCPFAlreadyExists = errors.New("the cpf is already in use")
 	ErrInvalidCPF       = errors.New("invalid cpf")
-	domainErrors        = []error{
+	ErrInvalidSecret    = errors.New("the secret must have a length between 6 and 50")
+	DomainErrors        = []error{
 		ErrCPFAlreadyExists,
 		ErrInvalidCPF,
+		ErrInvalidSecret,
 	}
 )
 
@@ -38,6 +41,9 @@ func NewAccount(name, CPF, secret string) (*Account, error) {
 		Balance: 0,
 	}
 	err := acc.Validate()
+	hash, _ := hash.New(acc.Secret)
+
+	acc.Secret = hash
 
 	if err != nil {
 		return nil, err
@@ -50,6 +56,9 @@ func NewAccount(name, CPF, secret string) (*Account, error) {
 // TODO validate cpf
 // TODO hash secret with bcrypt
 func (a Account) Validate() error {
+	if len(a.Secret) < 6 || len(a.Secret) > 50 {
+		return ErrInvalidSecret
+	}
 	return nil
 }
 
