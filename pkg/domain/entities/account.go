@@ -19,13 +19,13 @@ type Account struct {
 	CreatedAt time.Time
 }
 
-func NewAccount(name, CPF, secret string, balance int) (*Account, error) {
+func NewAccount(name, CPF, secret string) (*Account, error) {
 	acc := Account{
 		ID:      newID(),
 		Name:    name,
 		CPF:     CPF,
 		Secret:  secret,
-		Balance: balance,
+		Balance: 0,
 	}
 	err := acc.Validate()
 
