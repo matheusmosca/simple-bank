@@ -14,7 +14,6 @@ type testCase struct {
 	Name                       string
 	CPF                        string
 	Secret                     string
-	Balance                    int
 	Want                       error
 	RepositoryCreateResponse   error
 	RepositoryGetByCPFResponse *entities.Account
@@ -47,7 +46,6 @@ func TestCreate(t *testing.T) {
 			Name:                     "Maria",
 			CPF:                      "042.954.750-17",
 			Secret:                   "123456",
-			Balance:                  0,
 			Want:                     nil,
 			RepositoryCreateResponse: nil,
 			Message:                  "Should create an account successfully",
@@ -58,7 +56,7 @@ func TestCreate(t *testing.T) {
 		t.Run(tc.Message, func(t *testing.T) {
 			setupMock(tc.RepositoryCreateResponse, tc.RepositoryGetByCPFResponse)
 
-			_, err := useCase.Create(context.Background(), tc.Name, tc.CPF, tc.Secret, tc.Balance)
+			_, err := useCase.Create(context.Background(), tc.Name, tc.CPF, tc.Secret)
 			assert.Equal(t, tc.Want, err)
 		})
 	}

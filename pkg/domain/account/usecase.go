@@ -12,5 +12,5 @@ var (
 
 type UseCase interface {
 	// List(ctx context.Context) ([]*entities.Account, error)
-	Create(ctx context.Context, name, CPF, secret string, balance int) (*entities.Account, error)
+	Create(ctx context.Context, name, CPF, secret string) (*entities.Account, error)
 }
