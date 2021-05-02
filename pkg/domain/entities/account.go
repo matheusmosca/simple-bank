@@ -1,6 +1,7 @@
 package entities
 
 import (
+	"errors"
 	"time"
 
 	"github.com/google/uuid"
@@ -9,6 +10,11 @@ import (
 func newID() string {
 	return uuid.NewString()
 }
+
+var (
+	ErrCPFAlreadyExists = errors.New("the cpf is already in use")
+	ErrInvalidCPF       = errors.New("invalid cpf")
+)
 
 type Account struct {
 	ID        string

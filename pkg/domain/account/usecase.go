@@ -2,12 +2,7 @@ package account
 
 import (
 	"context"
-	"errors"
 	"simple-bank/pkg/domain/entities"
-)
-
-var (
-	ErrCPFAlreadyExists = errors.New(`the cpf is already in use`)
 )
 
 type UseCase interface {
