@@ -31,10 +31,6 @@ func (r Repository) GetByID(ctx context.Context, accountID string) (*entities.Ac
 	return nil, nil
 }
 
-func (r Repository) GetByCPF(ctx context.Context, CPF string) (*entities.Account, error) {
-	return nil, nil
-}
-
 func (r Repository) GetAccounts(ctx context.Context) ([]*entities.Account, error) {
 	return nil, nil
 }
