@@ -27,10 +27,6 @@ func (r Repository) Create(ctx context.Context, account *entities.Account) error
 	return err
 }
 
-func (r Repository) GetByID(ctx context.Context, accountID string) (*entities.Account, error) {
-	return nil, nil
-}
-
 func (r Repository) GetAccounts(ctx context.Context) ([]*entities.Account, error) {
 	return nil, nil
 }
