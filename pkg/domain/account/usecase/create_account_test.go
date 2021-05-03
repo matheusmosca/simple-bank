@@ -44,7 +44,7 @@ func TestCreate(t *testing.T) {
 	testCases := []testCase{
 		{
 			Name:                     "Maria",
-			CPF:                      "042.954.750-17",
+			CPF:                      "601.068.180-40",
 			Secret:                   "123456",
 			Want:                     nil,
 			RepositoryCreateResponse: nil,

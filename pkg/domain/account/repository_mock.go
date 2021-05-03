@@ -22,7 +22,7 @@ var _ Repository = &RepositoryMock{}
 // 			CreateFunc: func(ctx context.Context, account *entities.Account) error {
 // 				panic("mock out the Create method")
 // 			},
-// 			GetAccountsFunc: func(ctx context.Context) ([]*entities.Account, error) {
+// 			GetAccountsFunc: func(ctx context.Context) ([]entities.Account, error) {
 // 				panic("mock out the GetAccounts method")
 // 			},
 // 			GetByCPFFunc: func(ctx context.Context, CPF string) (*entities.Account, error) {
@@ -45,7 +45,7 @@ type RepositoryMock struct {
 	CreateFunc func(ctx context.Context, account *entities.Account) error
 
 	// GetAccountsFunc mocks the GetAccounts method.
-	GetAccountsFunc func(ctx context.Context) ([]*entities.Account, error)
+	GetAccountsFunc func(ctx context.Context) ([]entities.Account, error)
 
 	// GetByCPFFunc mocks the GetByCPF method.
 	GetByCPFFunc func(ctx context.Context, CPF string) (*entities.Account, error)
@@ -135,7 +135,7 @@ func (mock *RepositoryMock) CreateCalls() []struct {
 }
 
 // GetAccounts calls GetAccountsFunc.
-func (mock *RepositoryMock) GetAccounts(ctx context.Context) ([]*entities.Account, error) {
+func (mock *RepositoryMock) GetAccounts(ctx context.Context) ([]entities.Account, error) {
 	if mock.GetAccountsFunc == nil {
 		panic("RepositoryMock.GetAccountsFunc: method is nil but Repository.GetAccounts was just called")
 	}
