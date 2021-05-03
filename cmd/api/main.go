@@ -3,14 +3,16 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"net/http"
 
-	"github.com/gorilla/mux"
+	account_usecase "simple-bank/pkg/domain/account/usecase"
+	account_postgre "simple-bank/pkg/gateways/db/postgres/entries/account"
+	"simple-bank/pkg/gateways/http"
+
 	_ "github.com/lib/pq"
 )
 
 const (
-	host     = "simple_bank_db"
+	host     = "localhost"
 	port     = 5432
 	user     = "postgres"
 	password = "postgres"
@@ -32,20 +34,9 @@ func main() {
 		panic(err)
 	}
 
-	// accountUseCase := account_usecase.NewAccountUseCase(account_postgree.NewRepository(db))
+	accountUseCase := account_usecase.NewAccountUseCase(account_postgre.NewRepository(db))
 
-	// acc, err := accountUseCase.Create(context.Background(), "maria", "738.333.222-12", "2222222222", 0)
-	// if err != nil {
-	// 	log.Println(err)
-	// }
+	API := http.NewAPI(accountUseCase)
 
-	// log.Println(acc)
-
-	r := mux.NewRouter()
-
-	r.HandleFunc("/api/v1", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello")
-	})
-
-	http.ListenAndServe(":3000", r)
+	API.Start()
 }
