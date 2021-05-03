@@ -55,9 +55,6 @@ func NewAccount(name, CPF, secret string) (*Account, error) {
 	return &acc, nil
 }
 
-// TODO add proper validation
-// TODO validate cpf
-// TODO hash secret with bcrypt
 func (a Account) Validate() error {
 	if len(a.Secret) < 6 || len(a.Secret) > 50 {
 		return ErrInvalidSecret
