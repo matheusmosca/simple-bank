@@ -2,6 +2,7 @@ package entities
 
 import (
 	"errors"
+	"simple-bank/pkg/common/cpf"
 	"simple-bank/pkg/common/hash"
 	"time"
 
@@ -14,11 +15,13 @@ func newID() string {
 
 var (
 	ErrCPFAlreadyExists = errors.New("the cpf is already in use")
-	ErrInvalidCPF       = errors.New("invalid cpf")
+	ErrInvalidCPF       = errors.New("invalid cpf format. example of cpf: 601.647.540-83")
+	ErrInvalidName      = errors.New("the name can't have more than 255 characters")
 	ErrInvalidSecret    = errors.New("the secret must have a length between 6 and 50")
 	AccountDomainErrors = []error{
 		ErrCPFAlreadyExists,
 		ErrInvalidCPF,
+		ErrInvalidName,
 		ErrInvalidSecret,
 	}
 )
@@ -59,5 +62,12 @@ func (a Account) Validate() error {
 	if len(a.Secret) < 6 || len(a.Secret) > 50 {
 		return ErrInvalidSecret
 	}
+	if len(a.Name) == 0 || len(a.Name) > 255 {
+		return ErrInvalidName
+	}
+	if !cpf.Validate(a.CPF) {
+		return ErrInvalidCPF
+	}
+
 	return nil
 }
