@@ -6,15 +6,15 @@ import (
 )
 
 func (r Repository) Create(ctx context.Context, account *entities.Account) error {
-	statement := `INSERT INTO account
-							(id,
-							 name,
-							 cpf,
-							 secret,
-							 balance)
-							VALUES ($1, $2, $3, $4, $5)
-							returning created_at
-							`
+	statement := `
+		INSERT INTO account
+			(id,
+				name,
+				cpf,
+				secret,
+				balance)
+			VALUES ($1, $2, $3, $4, $5)
+		returning created_at`
 
 	err := r.DB.QueryRowContext(ctx, statement,
 		account.ID,
