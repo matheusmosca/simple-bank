@@ -20,8 +20,8 @@ func NewHandler(r *mux.Router, useCase account.UseCase) *Handler {
 
 	// TODO implement handler methods
 	r.HandleFunc("/accounts", h.Create).Methods("POST")
+	r.HandleFunc("/accounts", h.List).Methods("GET")
 	// r.HandleFunc("/accounts/{id}/balance", h.GetBalance).Methods("GET")
-	// r.HandleFunc("/accounts", h.GetAccounts).Methods("GET")
 
 	return h
 }

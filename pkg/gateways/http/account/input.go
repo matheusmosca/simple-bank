@@ -13,7 +13,7 @@ type (
 		ID        string    `json:"id"`
 		Name      string    `json:"name"`
 		CPF       string    `json:"cpf"`
-		Balance   int       `json:"balance"`
+		Balance   float64   `json:"balance"`
 		CreatedAt time.Time `json:"created_at"`
 	}
 
