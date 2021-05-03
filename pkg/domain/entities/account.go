@@ -16,7 +16,7 @@ var (
 	ErrCPFAlreadyExists = errors.New("the cpf is already in use")
 	ErrInvalidCPF       = errors.New("invalid cpf")
 	ErrInvalidSecret    = errors.New("the secret must have a length between 6 and 50")
-	DomainErrors        = []error{
+	AccountDomainErrors = []error{
 		ErrCPFAlreadyExists,
 		ErrInvalidCPF,
 		ErrInvalidSecret,
