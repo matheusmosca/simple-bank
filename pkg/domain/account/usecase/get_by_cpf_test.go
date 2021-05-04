@@ -19,61 +19,35 @@ func TestGetByCPF(t *testing.T) {
 	t.Run("Should return an account without errors", func(t *testing.T) {
 		setupAccountUseCase()
 
-		mockRepository.CreateFunc = func(ctx context.Context, a *entities.Account) error {
-			return nil
-		}
-
-		mockRepository.GetByCPFFunc = func(ctx context.Context, cpf string) (*entities.Account, error) {
-			return nil, nil
-		}
-
-		expectedAccount, err := useCase.Create(ctx, input)
-		assert.Nil(t, err)
+		expectedAccount, _ := entities.NewAccount(input.Name, input.CPF, input.Secret)
 
 		// Returns a valid account
 		mockRepository.GetByCPFFunc = func(ctx context.Context, cpf string) (*entities.Account, error) {
 			return expectedAccount, nil
 		}
 
+		a, err := useCase.GetByCPF(ctx, input.CPF)
+
+		assert.Nil(t, err)
+
 		if err != nil {
-			a, err := useCase.GetByCPF(ctx, input.CPF)
-
-			assert.Nil(t, err)
-
-			if err != nil {
-				assert.Equal(t, expectedAccount.Name, a.Name)
-				assert.Equal(t, expectedAccount.CPF, a.CPF)
-				assert.Equal(t, expectedAccount.Secret, a.Secret)
-				assert.Equal(t, expectedAccount.Balance, a.Balance)
-			}
+			assert.Equal(t, a, expectedAccount)
 		}
 	})
 
 	t.Run("Should not return an account, Account does not exist", func(t *testing.T) {
 		setupAccountUseCase()
 
-		mockRepository.CreateFunc = func(ctx context.Context, a *entities.Account) error {
-			return nil
-		}
+		acc, _ := entities.NewAccount(input.Name, input.CPF, input.Secret)
 
-		mockRepository.GetByCPFFunc = func(ctx context.Context, cpf string) (*entities.Account, error) {
-			return nil, nil
-		}
-
-		_, err := useCase.Create(ctx, input)
-		assert.Nil(t, err)
-
-		// Returns a valid account
+		// Does not return an account
 		mockRepository.GetByCPFFunc = func(ctx context.Context, cpf string) (*entities.Account, error) {
 			return nil, entities.ErrAccountDoesNotExist
 		}
 
-		if err != nil {
-			a, err := useCase.GetByCPF(ctx, input.CPF)
+		a, err := useCase.GetByCPF(ctx, acc.CPF)
 
-			assert.Equal(t, err, entities.ErrAccountDoesNotExist)
-			assert.Nil(t, a)
-
-		}
+		assert.Equal(t, err, entities.ErrAccountDoesNotExist)
+		assert.Nil(t, a)
 	})
 }
