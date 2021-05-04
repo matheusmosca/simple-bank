@@ -5,13 +5,13 @@ import (
 	"simple-bank/pkg/domain/entities"
 )
 
-func (a Account) Create(ctx context.Context, name, CPF, secret string) (*entities.Account, error) {
-	checkCPF, _ := a.repository.GetByCPF(ctx, CPF)
+func (a Account) Create(ctx context.Context, input entities.CreateAccountInput) (*entities.Account, error) {
+	checkCPF, _ := a.repository.GetByCPF(ctx, input.CPF)
 	if checkCPF != nil {
 		return nil, entities.ErrCPFAlreadyExists
 	}
 
-	acc, err := entities.NewAccount(name, CPF, secret)
+	acc, err := entities.NewAccount(input.Name, input.CPF, input.Secret)
 	if err != nil {
 		return nil, err
 	}

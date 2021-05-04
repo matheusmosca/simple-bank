@@ -18,6 +18,7 @@ var (
 	ErrInvalidCPF       = errors.New("invalid cpf format. example of cpf: 601.647.540-83")
 	ErrInvalidName      = errors.New("the name can't have more than 255 characters")
 	ErrInvalidSecret    = errors.New("the secret must have a length between 6 and 50")
+
 	AccountDomainErrors = []error{
 		ErrCPFAlreadyExists,
 		ErrInvalidCPF,
@@ -25,6 +26,12 @@ var (
 		ErrInvalidSecret,
 	}
 )
+
+type CreateAccountInput struct {
+	Name   string
+	CPF    string
+	Secret string
+}
 
 type Account struct {
 	ID        string

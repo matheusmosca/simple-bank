@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"simple-bank/pkg/domain/account"
+	"simple-bank/pkg/domain/entities"
 	"simple-bank/pkg/gateways/http/util/response"
 )
 
@@ -28,7 +29,11 @@ func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	acc, err := h.UseCase.Create(r.Context(), reqBody.Name, reqBody.CPF, reqBody.Secret)
+	acc, err := h.UseCase.Create(r.Context(), entities.CreateAccountInput{
+		Name:   reqBody.Name,
+		CPF:    reqBody.CPF,
+		Secret: reqBody.Secret,
+	})
 	if err != nil {
 		if account.IsDomainError(err) {
 			response.SendError(w, err.Error(), http.StatusBadRequest)
