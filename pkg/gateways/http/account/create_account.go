@@ -18,7 +18,7 @@ func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var validationErrPayload ValidationErrorResponse
-	err = h.Validator.Validate(reqBody, &validationErrPayload)
+	err = h.validator.Validate(reqBody, &validationErrPayload)
 
 	if err != nil {
 		response.Send(
@@ -29,7 +29,7 @@ func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	acc, err := h.UseCase.Create(r.Context(), entities.CreateAccountInput{
+	acc, err := h.usecase.Create(r.Context(), entities.CreateAccountInput{
 		Name:   reqBody.Name,
 		CPF:    reqBody.CPF,
 		Secret: reqBody.Secret,

@@ -17,6 +17,10 @@ type (
 		CreatedAt time.Time `json:"created_at"`
 	}
 
+	BalanceResponse struct {
+		Balance float64 `json:"balance"`
+	}
+
 	ValidationErrorResponse struct {
 		Name   string `json:"name,omitempty"`
 		CPF    string `json:"cpf,omitempty"`

@@ -8,20 +8,20 @@ import (
 )
 
 type Handler struct {
-	UseCase   account.UseCase
-	Validator *validator.StructValidator
+	usecase   account.UseCase
+	validator *validator.StructValidator
 }
 
-func NewHandler(r *mux.Router, useCase account.UseCase) *Handler {
+func NewHandler(r *mux.Router, usecase account.UseCase) *Handler {
 	h := &Handler{
-		UseCase:   useCase,
-		Validator: validator.New(),
+		usecase:   usecase,
+		validator: validator.New(),
 	}
 
 	// TODO implement handler methods
 	r.HandleFunc("/accounts", h.Create).Methods("POST")
 	r.HandleFunc("/accounts", h.List).Methods("GET")
-	// r.HandleFunc("/accounts/{id}/balance", h.GetBalance).Methods("GET")
+	r.HandleFunc("/accounts/{account_id}/balance", h.GetBalance).Methods("GET")
 
 	return h
 }

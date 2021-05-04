@@ -13,8 +13,7 @@ require (
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b
-	golang.org/x/net v0.0.0-20210502030024-e5908800b52b // indirect
 	golang.org/x/sys v0.0.0-20210502180810-71e4cd670f79 // indirect
-	golang.org/x/term v0.0.0-20210429154555-c04ba851c2a4 // indirect
+	golang.org/x/text v0.3.6 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )

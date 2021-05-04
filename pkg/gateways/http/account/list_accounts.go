@@ -7,7 +7,7 @@ import (
 )
 
 func (h Handler) List(w http.ResponseWriter, r *http.Request) {
-	accounts, err := h.UseCase.List(r.Context())
+	accounts, err := h.usecase.List(r.Context())
 	if err != nil {
 		if account.IsDomainError(err) {
 			response.SendError(w, err.Error(), http.StatusNotFound)
