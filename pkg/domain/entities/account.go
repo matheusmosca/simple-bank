@@ -14,16 +14,18 @@ func newID() string {
 }
 
 var (
-	ErrCPFAlreadyExists = errors.New("the cpf is already in use")
-	ErrInvalidCPF       = errors.New("invalid cpf format. example of cpf: 601.647.540-83")
-	ErrInvalidName      = errors.New("the name can't have more than 255 characters")
-	ErrInvalidSecret    = errors.New("the secret must have a length between 6 and 50")
+	ErrCPFAlreadyExists    = errors.New("the cpf is already in use")
+	ErrInvalidCPF          = errors.New("invalid cpf format. example of cpf: 601.647.540-83")
+	ErrInvalidName         = errors.New("the name can't have more than 255 characters")
+	ErrInvalidSecret       = errors.New("the secret must have a length between 6 and 50")
+	ErrAccountDoesNotExist = errors.New("this account does not exist")
 
 	AccountDomainErrors = []error{
 		ErrCPFAlreadyExists,
 		ErrInvalidCPF,
 		ErrInvalidName,
 		ErrInvalidSecret,
+		ErrAccountDoesNotExist,
 	}
 )
 
