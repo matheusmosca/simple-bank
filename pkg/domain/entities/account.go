@@ -13,6 +13,8 @@ func newID() string {
 	return uuid.NewString()
 }
 
+const DefaultBalanceValue = 0
+
 var (
 	ErrCPFAlreadyExists    = errors.New("the cpf is already in use")
 	ErrInvalidCPF          = errors.New("invalid cpf format. example of cpf: 601.647.540-83")
@@ -50,7 +52,7 @@ func NewAccount(name, CPF, secret string) (*Account, error) {
 		Name:    name,
 		CPF:     CPF,
 		Secret:  secret,
-		Balance: 0,
+		Balance: DefaultBalanceValue,
 	}
 	err := acc.Validate()
 	hash, _ := hash.New(acc.Secret)
