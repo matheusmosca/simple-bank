@@ -12,6 +12,7 @@ func (r Repository) GetByCPF(ctx context.Context, CPF string) (*entities.Account
 			name,
 			cpf,
 			balance,
+			secret,
 			created_at
 		FROM
 			account
@@ -25,6 +26,7 @@ func (r Repository) GetByCPF(ctx context.Context, CPF string) (*entities.Account
 		&acc.Name,
 		&acc.CPF,
 		&acc.Balance,
+		&acc.Secret,
 		&acc.CreatedAt,
 	)
 

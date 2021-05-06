@@ -1,8 +1,6 @@
 package postgres
 
 import (
-	"log"
-
 	"github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/github"
@@ -14,8 +12,6 @@ func GetMigrationHandler(dbUrl string) (*migrate.Migrate, error) {
 		func(name string) ([]byte, error) {
 			return Asset(name)
 		})
-
-	log.Println(AssetNames())
 
 	d, err := bindata.WithInstance(s)
 	if err != nil {
