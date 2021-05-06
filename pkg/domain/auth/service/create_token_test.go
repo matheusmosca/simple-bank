@@ -15,7 +15,7 @@ func TestCreateToken(t *testing.T) {
 		acc, _ := entities.NewAccount("Jorge", "830.088.320-75", "12345678")
 
 		claims := jwt.MapClaims{}
-		token, err := createToken(*acc)
+		token, err := CreateToken(*acc)
 
 		assert.NotNil(t, token)
 		assert.Nil(t, err)

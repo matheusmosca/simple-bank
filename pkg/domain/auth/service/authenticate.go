@@ -26,7 +26,7 @@ func (a Auth) Authenticate(ctx context.Context, CPF, secret string) (string, err
 	}
 
 	if hash.CompareSecrets(secret, acc.Secret) {
-		return createToken(*acc)
+		return CreateToken(*acc)
 	}
 
 	return "", auth.ErrWrongCredentials

@@ -8,7 +8,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-func createToken(u entities.Account) (string, error) {
+func CreateToken(u entities.Account) (string, error) {
 	j := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"Id":        u.ID,
 		"IssuedAt":  time.Now().Unix(),
