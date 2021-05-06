@@ -1,11 +1,14 @@
 package cpf
 
 import (
+	"errors"
 	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
 )
+
+var ErrInvalidCPF = errors.New("invalid cpf")
 
 // Validates the format of a CPF
 // Expected format: nnn.nnn.nnn-nn
