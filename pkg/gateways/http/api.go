@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"simple-bank/pkg/domain/account"
 	"simple-bank/pkg/domain/auth"
+	"time"
 
 	account_handler "simple-bank/pkg/gateways/http/account"
 	auth_handler "simple-bank/pkg/gateways/http/auth"
@@ -14,7 +15,6 @@ import (
 )
 
 type API struct {
-	//TODO add more usecases
 	AccountUseCase account.UseCase
 	AuthService    auth.Service
 }
@@ -26,7 +26,7 @@ func NewAPI(accUseCase account.UseCase, authService auth.Service) *API {
 	}
 }
 
-func (a API) Start() {
+func (a API) Start(host string, port string) {
 	router := mux.NewRouter()
 
 	v1 := router.PathPrefix("/api/v1").Subrouter()
@@ -34,7 +34,15 @@ func (a API) Start() {
 	account_handler.NewHandler(v1, a.AccountUseCase)
 	auth_handler.NewHandler(v1, a.AuthService)
 
+	endpoint := fmt.Sprintf("%s:%s", host, port)
+
+	srv := &http.Server{
+		Handler:      router,
+		Addr:         endpoint,
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+
 	fmt.Println("Starting api...")
-	err := http.ListenAndServe(":3000", v1)
-	log.Println(err)
+	log.Fatal(srv.ListenAndServe())
 }
