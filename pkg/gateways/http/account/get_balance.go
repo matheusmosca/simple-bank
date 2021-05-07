@@ -9,11 +9,7 @@ import (
 )
 
 func (h Handler) GetBalance(w http.ResponseWriter, r *http.Request) {
-	accountID, ok := mux.Vars(r)["account_id"]
-	if !ok {
-		response.SendError(w, "account_id not provided", http.StatusNotFound)
-		return
-	}
+	accountID := mux.Vars(r)["account_id"]
 
 	acc, err := h.usecase.GetByID(r.Context(), accountID)
 	if err != nil {
@@ -27,6 +23,7 @@ func (h Handler) GetBalance(w http.ResponseWriter, r *http.Request) {
 		}
 
 		response.SendError(w, response.ErrIntervalServer, http.StatusInternalServerError)
+		return
 	}
 
 	response.Send(
