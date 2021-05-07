@@ -9,28 +9,32 @@ RICHGO_FORCE_COLOR=1
 GIT_COMMIT=$(shell git rev-parse HEAD)
 GIT_BUILD_TIME=$(shell date '+%Y-%m-%d__%I:%M:%S%p')
 
-.PHONY: start
-start: 
+.PHONY: dev-docker
+dev-docker:
 	@echo "==> Starting application..."
 	docker-compose up --build
 
+.PHONY: dev-local
+dev-local:
+	@echo "==> Starting application..."
+	docker-compose up --d simple_bank_db
+	go run cmd/api/main.go
+
 .PHONY: test
 test:
-	@echo "==> Running Tests"
+	@echo "==> Running Tests..."
 	go test -v ./...
 
 .PHONY: test-coverage
 test-coverage:
-	@echo "Running tests"
+	@echo "==> Checking test coverage..."
 	go get github.com/kyoh86/richgo
 	@richgo test -failfast -coverprofile=coverage.out ./...
 	@go tool cover -html=coverage.out -o coverage.html
-	rm coverage.out
-	rm coverage.html
 
 .PHONY: generate
 generate:
-	@echo "Go Generating"
+	@echo "==> Go Generating..."
 	go get github.com/kevinburke/go-bindata/...
 	@go generate ./...
 	go mod tidy
