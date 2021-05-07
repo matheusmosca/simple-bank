@@ -20,6 +20,10 @@ services:
     ports:
       - 3000:3000
     restart: always
+    environment:
+      DATABASE_NAME: simple_bank_db
+      DATABASE_HOST_DIRECT: simple_bank_db
+      HOSTNAME: simple_bank_db
 
 volumes:
   postgres_data:
