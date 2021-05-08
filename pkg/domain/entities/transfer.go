@@ -24,6 +24,12 @@ type CreateTransferInput struct {
 	Amount               int
 }
 
+type PerformTransferenceInput struct {
+	OriginAcount      *Account
+	DestinationAcount *Account
+	Transfer          *Transfer
+}
+
 type Transfer struct {
 	ID                   string
 	AccountOriginID      string
