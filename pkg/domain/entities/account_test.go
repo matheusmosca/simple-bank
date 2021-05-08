@@ -73,3 +73,71 @@ func TestNewAccount(t *testing.T) {
 		assert.NotEqual(t, acc.Secret, secret)
 	})
 }
+func TestDepositMoney(t *testing.T) {
+	acc, _ := NewAccount("jorge", "031.915.990-61", "123784397")
+
+	t.Run("the account should recieve money normally", func(t *testing.T) {
+		acc.Balance = 10
+
+		want := acc.Balance + 300
+		acc.DepositMoney(300)
+
+		assert.Equal(t, acc.Balance, want)
+	})
+
+	t.Run("should return a error due to an invalid amount provided", func(t *testing.T) {
+		err := acc.DepositMoney(0)
+		assert.Equal(t, err, ErrInvalidAmount)
+	})
+}
+
+func TestWithdrawMoney(t *testing.T) {
+	t.Run("the account's wallet should withdraw normally", func(t *testing.T) {
+		acc, _ := NewAccount("jorge", "031.915.990-61", "123784397")
+
+		acc.DepositMoney(1000)
+		err := acc.WithdrawMoney(1000)
+		wantBalance := 0
+
+		assert.Nil(t, err)
+		assert.Equal(t, acc.Balance, DefaultBalanceValue+wantBalance)
+	})
+
+	t.Run("should return a error due to an invalid amount provided", func(t *testing.T) {
+		acc, _ := NewAccount("jorge", "031.915.990-61", "123784397")
+		err := acc.WithdrawMoney(0)
+		assert.Equal(t, err, ErrInvalidAmount)
+		// The balance should not be modified
+		assert.Equal(t, acc.Balance, DefaultBalanceValue)
+	})
+
+	t.Run("should return a error due to insuficient funds", func(t *testing.T) {
+		acc, _ := NewAccount("jorge", "031.915.990-61", "123784397")
+		acc.DepositMoney(1000)
+
+		err := acc.WithdrawMoney(1001)
+		assert.Equal(t, err, ErrInsufficientFunds)
+		// The balance should not be modified
+		assert.Equal(t, acc.Balance, DefaultBalanceValue+1000)
+	})
+}
+
+func TestAccountWalletFunds(t *testing.T) {
+	acc, _ := NewAccount("jorge", "031.915.990-61", "123784397")
+	acc.DepositMoney(1000)
+
+	t.Run("the account should have sufficient funds", func(t *testing.T) {
+		err := acc.CheckWalletFunds(1000)
+		assert.Nil(t, err)
+	})
+
+	t.Run("the account should not have sufficient funds", func(t *testing.T) {
+		err := acc.CheckWalletFunds(1001)
+		assert.Equal(t, err, ErrInsufficientFunds)
+	})
+
+	t.Run("should return a error due to an invalid amount provided", func(t *testing.T) {
+		err := acc.CheckWalletFunds(0)
+		assert.Equal(t, err, ErrInvalidAmount)
+	})
+}

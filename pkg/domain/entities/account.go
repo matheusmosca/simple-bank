@@ -80,6 +80,39 @@ func (a Account) Validate() error {
 	return nil
 }
 
+// Checks if an accounts has sufficient balance
+// to perform an transaction with the provided amount
+func (a Account) CheckWalletFunds(amount int) error {
+	if amount <= 0 {
+		return ErrInvalidAmount
+	}
+
+	if (a.Balance - amount) < 0 {
+		return ErrInsufficientFunds
+	}
+
+	return nil
+}
+
+func (a *Account) DepositMoney(amount int) error {
+	if amount <= 0 {
+		return ErrInvalidAmount
+	}
+
+	a.Balance += amount
+	return nil
+}
+
+func (a *Account) WithdrawMoney(amount int) error {
+	err := a.CheckWalletFunds(amount)
+	if err != nil {
+		return err
+	}
+
+	a.Balance -= amount
+	return nil
+}
+
 func (a Account) DisplayBalance() float64 {
 	return float64(a.Balance) / 100
 }
