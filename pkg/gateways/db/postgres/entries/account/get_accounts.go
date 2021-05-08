@@ -26,13 +26,16 @@ func (r Repository) GetAccounts(ctx context.Context) ([]entities.Account, error)
 	for rows.Next() {
 		var acc entities.Account
 
-		rows.Scan(
+		err := rows.Scan(
 			&acc.ID,
 			&acc.Name,
 			&acc.CPF,
 			&acc.Balance,
 			&acc.CreatedAt,
 		)
+		if err != nil {
+			return nil, err
+		}
 
 		accounts = append(accounts, acc)
 	}
