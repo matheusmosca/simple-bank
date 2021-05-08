@@ -6,8 +6,16 @@ import (
 )
 
 var (
-	ErrInvalidAmount     = errors.New("the amount must be greater than 0")
-	TransferDomainErrors = []error{ErrInvalidAmount}
+	ErrInvalidAmount           = errors.New("the amount must be greater than 0")
+	ErrInsufficientFunds       = errors.New("the account has insufficient funds")
+	ErrOrigAccountDoesNotExist = errors.New("the origin account does not exist")
+	ErrDestAccountDoesNotExist = errors.New("the destination account does not exist")
+	TransferDomainErrors       = []error{
+		ErrInvalidAmount,
+		ErrInsufficientFunds,
+		ErrOrigAccountDoesNotExist,
+		ErrDestAccountDoesNotExist,
+	}
 )
 
 type CreateTransferInput struct {
