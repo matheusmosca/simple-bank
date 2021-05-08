@@ -18,11 +18,10 @@ func (r Repository) GetAccounts(ctx context.Context) ([]entities.Account, error)
 	var accounts []entities.Account
 
 	rows, err := r.DB.QueryContext(ctx, query)
-	defer rows.Close()
-
 	if err != nil {
 		return nil, err
 	}
+	defer rows.Close()
 
 	for rows.Next() {
 		var acc entities.Account
