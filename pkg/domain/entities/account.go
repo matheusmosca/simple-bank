@@ -13,7 +13,7 @@ func newID() string {
 	return uuid.NewString()
 }
 
-const DefaultBalanceValue = 0
+const DefaultBalanceValue = 1000
 
 var (
 	ErrCPFAlreadyExists    = errors.New("the cpf is already in use")
