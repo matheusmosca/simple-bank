@@ -29,9 +29,9 @@
 
 ```json
 {
-	"name": "Maria",
+  "name": "Maria",
   "secret": "12345678",
-	"cpf": "103.913.350-90"
+  "cpf": "103.913.350-90"
 }
 ```
 
@@ -69,7 +69,7 @@
 ```json
 // Request body
 {
-	"account_destination_id": "eb7b34eb-643b-4e2b-9e81-7641b3e45327",
+  "account_destination_id": "eb7b34eb-643b-4e2b-9e81-7641b3e45327",
   "amount": 100
 }
 // Response body
