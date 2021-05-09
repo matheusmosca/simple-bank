@@ -68,7 +68,7 @@ func TestNewAccount(t *testing.T) {
 
 		assert.Equal(t, acc.Name, name)
 		assert.Equal(t, acc.CPF, cpf)
-		assert.Equal(t, acc.Balance, 0)
+		assert.Equal(t, acc.Balance, DefaultBalanceValue)
 
 		assert.NotEqual(t, acc.Secret, secret)
 	})
@@ -95,12 +95,10 @@ func TestWithdrawMoney(t *testing.T) {
 	t.Run("the account's wallet should withdraw normally", func(t *testing.T) {
 		acc, _ := NewAccount("jorge", "031.915.990-61", "123784397")
 
-		acc.DepositMoney(1000)
-		err := acc.WithdrawMoney(1000)
-		wantBalance := 0
+		err := acc.WithdrawMoney(DefaultBalanceValue)
 
 		assert.Nil(t, err)
-		assert.Equal(t, acc.Balance, DefaultBalanceValue+wantBalance)
+		assert.Equal(t, acc.Balance, 0)
 	})
 
 	t.Run("should return a error due to an invalid amount provided", func(t *testing.T) {
@@ -112,27 +110,26 @@ func TestWithdrawMoney(t *testing.T) {
 	})
 
 	t.Run("should return a error due to insuficient funds", func(t *testing.T) {
+		// The account has the DefaultBalanceValue
 		acc, _ := NewAccount("jorge", "031.915.990-61", "123784397")
-		acc.DepositMoney(1000)
 
-		err := acc.WithdrawMoney(1001)
+		err := acc.WithdrawMoney(DefaultBalanceValue + 1)
 		assert.Equal(t, err, ErrInsufficientFunds)
 		// The balance should not be modified
-		assert.Equal(t, acc.Balance, DefaultBalanceValue+1000)
+		assert.Equal(t, acc.Balance, DefaultBalanceValue)
 	})
 }
 
 func TestAccountWalletFunds(t *testing.T) {
 	acc, _ := NewAccount("jorge", "031.915.990-61", "123784397")
-	acc.DepositMoney(1000)
 
 	t.Run("the account should have sufficient funds", func(t *testing.T) {
-		err := acc.CheckWalletFunds(1000)
+		err := acc.CheckWalletFunds(DefaultBalanceValue)
 		assert.Nil(t, err)
 	})
 
 	t.Run("the account should not have sufficient funds", func(t *testing.T) {
-		err := acc.CheckWalletFunds(1001)
+		err := acc.CheckWalletFunds(DefaultBalanceValue + 1)
 		assert.Equal(t, err, ErrInsufficientFunds)
 	})
 
