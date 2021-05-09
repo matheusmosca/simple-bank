@@ -11,6 +11,7 @@ type ErrorResponse struct {
 
 var (
 	ErrIntervalServer = "interval server error"
+	ErrUnauthorized   = "unauthorized"
 	ErrNotFound       = "not found"
 	ErrDecode         = "invalid params"
 )
