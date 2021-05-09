@@ -9,8 +9,10 @@ import (
 	"simple-bank/pkg/common/configuration"
 	account_usecase "simple-bank/pkg/domain/account/usecase"
 	auth_service "simple-bank/pkg/domain/auth/service"
+	transfer_usecase "simple-bank/pkg/domain/transfer/usecase"
 	"simple-bank/pkg/gateways/db/postgres"
 	account_postgre "simple-bank/pkg/gateways/db/postgres/entries/account"
+	transfer_postgre "simple-bank/pkg/gateways/db/postgres/entries/transfer"
 	"simple-bank/pkg/gateways/http"
 )
 
@@ -18,7 +20,7 @@ func main() {
 	// Load Config
 	cfg, err := configuration.LoadConfig()
 	if err != nil {
-		log.Fatal("Unable to load credit-fs-api configuration")
+		log.Fatal("Unable to load configuration")
 	}
 
 	db, err := sql.Open("postgres", cfg.DSN())
@@ -37,10 +39,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	accountUseCase := account_usecase.NewAccountUseCase(account_postgre.NewRepository(db))
+	accountRepo := account_postgre.NewRepository(db)
+	transferRepo := transfer_postgre.NewRepository(db)
+	accountUseCase := account_usecase.NewAccountUseCase(accountRepo)
 	authService := auth_service.NewAuthService(accountUseCase)
+	transferUseCase := transfer_usecase.NewTransfer(transferRepo, accountUseCase)
 
-	API := http.NewAPI(accountUseCase, authService)
+	API := http.NewAPI(accountUseCase, authService, transferUseCase)
 
-	API.Start("0.0.0.0",cfg.API.Port)
+	API.Start("0.0.0.0", cfg.API.Port)
 }
