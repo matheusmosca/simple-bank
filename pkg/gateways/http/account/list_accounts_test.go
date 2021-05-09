@@ -20,14 +20,14 @@ func TestListAccounts(t *testing.T) {
 			ID:        acc1.ID,
 			CPF:       acc1.CPF,
 			Name:      acc1.Name,
-			Balance:   acc1.DisplayBalance(),
+			Balance:   acc1.Balance,
 			CreatedAt: acc1.CreatedAt,
 		},
 		{
 			ID:        acc2.ID,
 			CPF:       acc2.CPF,
 			Name:      acc2.Name,
-			Balance:   acc2.DisplayBalance(),
+			Balance:   acc2.Balance,
 			CreatedAt: acc2.CreatedAt,
 		},
 	}

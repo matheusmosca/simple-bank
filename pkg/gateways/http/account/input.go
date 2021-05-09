@@ -13,12 +13,12 @@ type (
 		ID        string    `json:"id"`
 		Name      string    `json:"name"`
 		CPF       string    `json:"cpf"`
-		Balance   float64   `json:"balance"`
+		Balance   int       `json:"balance"`
 		CreatedAt time.Time `json:"created_at"`
 	}
 
 	BalanceResponse struct {
-		Balance float64 `json:"balance"`
+		Balance int `json:"balance"`
 	}
 
 	ValidationErrorResponse struct {

@@ -112,7 +112,3 @@ func (a *Account) WithdrawMoney(amount int) error {
 	a.Balance -= amount
 	return nil
 }
-
-func (a Account) DisplayBalance() float64 {
-	return float64(a.Balance) / 100
-}

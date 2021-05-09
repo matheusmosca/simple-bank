@@ -20,7 +20,7 @@ func TestGetBalance(t *testing.T) {
 
 	t.Run("should return 200 and a balance of an account", func(t *testing.T) {
 		wantBody, _ := json.Marshal(BalanceResponse{
-			Balance: acc.DisplayBalance(),
+			Balance: acc.Balance,
 		})
 
 		handler := fakeHandler(mockResponse{

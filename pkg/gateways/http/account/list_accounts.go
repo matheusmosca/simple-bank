@@ -19,7 +19,7 @@ func (h Handler) List(w http.ResponseWriter, r *http.Request) {
 			ID:        acc.ID,
 			Name:      acc.Name,
 			CPF:       acc.CPF,
-			Balance:   acc.DisplayBalance(),
+			Balance:   acc.Balance,
 			CreatedAt: acc.CreatedAt,
 		}
 	}

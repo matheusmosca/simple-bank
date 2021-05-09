@@ -35,7 +35,7 @@ func TestCreateAccount(t *testing.T) {
 			ID:        acc.ID,
 			CPF:       acc.CPF,
 			Name:      acc.Name,
-			Balance:   acc.DisplayBalance(),
+			Balance:   acc.Balance,
 			CreatedAt: acc.CreatedAt,
 		})
 

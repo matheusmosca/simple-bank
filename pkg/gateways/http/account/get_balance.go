@@ -28,7 +28,7 @@ func (h Handler) GetBalance(w http.ResponseWriter, r *http.Request) {
 
 	response.Send(
 		w,
-		BalanceResponse{Balance: acc.DisplayBalance()},
+		BalanceResponse{Balance: acc.Balance},
 		http.StatusOK,
 	)
 }
