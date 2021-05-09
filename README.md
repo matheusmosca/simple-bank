@@ -7,6 +7,7 @@
 - Golang
 - Docker
 - PostgreSQL
+- Github actions
 
 ## :books: Libraries
 
@@ -42,7 +43,7 @@
 ### Details
 
 - Accounts endpoints does not require authentication
-- New accounts starts with 0 balance
+- New accounts starts with 1000 in its balance
 - The account's balance is always integer
 - The `cpf` field should match `xxx.xxx.xxx-xx`. Take a look at [this website](https://www.4devs.com.br/gerador_de_cpf) for generate random cpfs.
 - The `secret` field must have between 6 and 50 characters
