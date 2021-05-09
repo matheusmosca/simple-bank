@@ -7,14 +7,17 @@ import (
 
 var (
 	ErrInvalidAmount           = errors.New("the amount must be greater than 0")
+	ErrOrigAccEqualDestAcc     = errors.New("the destination account can't be equal the origin account")
 	ErrInsufficientFunds       = errors.New("the account has insufficient funds")
 	ErrOrigAccountDoesNotExist = errors.New("the origin account does not exist")
 	ErrDestAccountDoesNotExist = errors.New("the destination account does not exist")
 	TransferDomainErrors       = []error{
 		ErrInvalidAmount,
+		ErrOrigAccEqualDestAcc,
 		ErrInsufficientFunds,
 		ErrOrigAccountDoesNotExist,
 		ErrDestAccountDoesNotExist,
+		ErrAccountDoesNotExist,
 	}
 )
 
@@ -58,6 +61,9 @@ func NewTransfer(origID, destID string, amount int) (*Transfer, error) {
 func (t Transfer) Validate() error {
 	if t.Amount <= 0 {
 		return ErrInvalidAmount
+	}
+	if t.AccountDestinationID == t.AccountOriginID {
+		return ErrOrigAccEqualDestAcc
 	}
 
 	return nil

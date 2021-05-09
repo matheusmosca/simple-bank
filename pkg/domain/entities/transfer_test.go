@@ -31,11 +31,20 @@ func TestNewTransfer(t *testing.T) {
 		assert.Nil(t, trans)
 	})
 
-	t.Run("Should not create a tranfer due to a negative value amount", func(t *testing.T) {
-		amount := -100
+	t.Run("Should not create a tranfer because the origin account is equal de destination account", func(t *testing.T) {
+		amount := 0
 		trans, err := NewTransfer(origID, destID, amount)
 
 		assert.Equal(t, err, ErrInvalidAmount)
+		assert.Nil(t, trans)
+	})
+
+	t.Run("Should not create a tranfer due to a negative value amount", func(t *testing.T) {
+		amount := 100
+		destID = origID
+		trans, err := NewTransfer(origID, destID, amount)
+
+		assert.Equal(t, err, ErrOrigAccEqualDestAcc)
 		assert.Nil(t, trans)
 	})
 }
