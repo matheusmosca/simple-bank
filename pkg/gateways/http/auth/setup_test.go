@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"simple-bank/pkg/domain/auth"
-	"simple-bank/pkg/gateways/http/util/validator"
+	"github.com/matheusmosca/simple-bank/pkg/domain/auth"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/util/validator"
 )
 
 type mockResponse struct {

@@ -2,7 +2,8 @@ package account
 
 import (
 	"context"
-	"simple-bank/pkg/domain/entities"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func (r Repository) GetAccounts(ctx context.Context) ([]entities.Account, error) {

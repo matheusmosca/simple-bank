@@ -1,8 +1,9 @@
 package transfer
 
 import (
-	"simple-bank/pkg/domain/entities"
 	"time"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 type (

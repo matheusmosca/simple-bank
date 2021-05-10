@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
-	"simple-bank/pkg/common/hash"
-	"simple-bank/pkg/domain/entities"
-
 	"github.com/stretchr/testify/assert"
+
+	"github.com/matheusmosca/simple-bank/pkg/common/hash"
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func TestCreate(t *testing.T) {

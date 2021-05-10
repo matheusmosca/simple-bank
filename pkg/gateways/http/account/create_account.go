@@ -3,9 +3,9 @@ package account
 import (
 	"net/http"
 
-	"simple-bank/pkg/domain/account"
-	"simple-bank/pkg/domain/entities"
-	"simple-bank/pkg/gateways/http/util/response"
+	"github.com/matheusmosca/simple-bank/pkg/domain/account"
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/util/response"
 )
 
 func (h Handler) Create(w http.ResponseWriter, r *http.Request) {

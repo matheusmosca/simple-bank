@@ -2,10 +2,11 @@ package service
 
 import (
 	"os"
-	"simple-bank/pkg/domain/entities"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func CreateToken(u entities.Account) (string, error) {

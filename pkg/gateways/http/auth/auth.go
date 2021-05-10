@@ -3,8 +3,8 @@ package auth
 import (
 	"github.com/gorilla/mux"
 
-	"simple-bank/pkg/domain/auth"
-	"simple-bank/pkg/gateways/http/util/validator"
+	"github.com/matheusmosca/simple-bank/pkg/domain/auth"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/util/validator"
 )
 
 type Handler struct {

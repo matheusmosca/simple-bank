@@ -2,11 +2,12 @@ package service
 
 import (
 	"context"
-	"simple-bank/pkg/domain/auth"
-	"simple-bank/pkg/domain/entities"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/auth"
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func TestAuthenticate(t *testing.T) {

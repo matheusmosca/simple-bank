@@ -3,9 +3,10 @@ package transfer
 import (
 	"log"
 	"net/http"
-	"simple-bank/pkg/domain/transfer"
-	"simple-bank/pkg/gateways/http/middlewares"
-	"simple-bank/pkg/gateways/http/util/response"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/transfer"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/middlewares"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/util/response"
 )
 
 func (h Handler) List(w http.ResponseWriter, r *http.Request) {

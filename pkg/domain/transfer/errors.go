@@ -1,6 +1,6 @@
 package transfer
 
-import "simple-bank/pkg/domain/entities"
+import "github.com/matheusmosca/simple-bank/pkg/domain/entities"
 
 // Check if some error belongs to the transfer domain
 func IsDomainError(err error) bool {

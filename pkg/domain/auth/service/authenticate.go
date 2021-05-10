@@ -3,10 +3,11 @@ package service
 import (
 	"context"
 	"log"
-	"simple-bank/pkg/common/cpf"
-	"simple-bank/pkg/common/hash"
-	"simple-bank/pkg/domain/auth"
-	"simple-bank/pkg/domain/entities"
+
+	"github.com/matheusmosca/simple-bank/pkg/common/cpf"
+	"github.com/matheusmosca/simple-bank/pkg/common/hash"
+	"github.com/matheusmosca/simple-bank/pkg/domain/auth"
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func (a Auth) Authenticate(ctx context.Context, CPF, secret string) (string, error) {

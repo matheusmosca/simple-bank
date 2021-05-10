@@ -2,7 +2,8 @@ package auth
 
 import (
 	"net/http"
-	"simple-bank/pkg/gateways/http/util/response"
+
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/util/response"
 )
 
 func (h Handler) Login(w http.ResponseWriter, r *http.Request) {

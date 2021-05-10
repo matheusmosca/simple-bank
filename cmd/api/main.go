@@ -6,14 +6,14 @@ import (
 
 	_ "github.com/lib/pq"
 
-	"simple-bank/pkg/common/configuration"
-	account_usecase "simple-bank/pkg/domain/account/usecase"
-	auth_service "simple-bank/pkg/domain/auth/service"
-	transfer_usecase "simple-bank/pkg/domain/transfer/usecase"
-	"simple-bank/pkg/gateways/db/postgres"
-	account_postgre "simple-bank/pkg/gateways/db/postgres/entries/account"
-	transfer_postgre "simple-bank/pkg/gateways/db/postgres/entries/transfer"
-	"simple-bank/pkg/gateways/http"
+	"github.com/matheusmosca/simple-bank/pkg/common/configuration"
+	account_usecase "github.com/matheusmosca/simple-bank/pkg/domain/account/usecase"
+	auth_service "github.com/matheusmosca/simple-bank/pkg/domain/auth/service"
+	transfer_usecase "github.com/matheusmosca/simple-bank/pkg/domain/transfer/usecase"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/db/postgres"
+	account_postgre "github.com/matheusmosca/simple-bank/pkg/gateways/db/postgres/entries/account"
+	transfer_postgre "github.com/matheusmosca/simple-bank/pkg/gateways/db/postgres/entries/transfer"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http"
 )
 
 func main() {

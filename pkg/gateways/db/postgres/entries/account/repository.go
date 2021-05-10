@@ -2,7 +2,8 @@ package account
 
 import (
 	"database/sql"
-	"simple-bank/pkg/domain/account"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/account"
 )
 
 var _ account.Repository = Repository{}

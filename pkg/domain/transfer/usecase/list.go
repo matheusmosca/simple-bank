@@ -3,7 +3,8 @@ package usecase
 import (
 	"context"
 	"log"
-	"simple-bank/pkg/domain/entities"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func (t Transfer) List(ctx context.Context, origID string) ([]entities.Transfer, error) {

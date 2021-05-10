@@ -2,8 +2,9 @@ package usecase
 
 import (
 	"context"
-	"simple-bank/pkg/domain/entities"
 	"testing"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 
 	"github.com/stretchr/testify/assert"
 )

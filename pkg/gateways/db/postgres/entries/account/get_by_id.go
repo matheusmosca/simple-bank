@@ -2,7 +2,8 @@ package account
 
 import (
 	"context"
-	"simple-bank/pkg/domain/entities"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func (r Repository) GetByID(ctx context.Context, accountID string) (*entities.Account, error) {

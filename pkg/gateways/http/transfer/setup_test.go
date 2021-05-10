@@ -12,9 +12,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"simple-bank/pkg/domain/entities"
-	"simple-bank/pkg/domain/transfer"
-	"simple-bank/pkg/gateways/http/util/validator"
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
+	"github.com/matheusmosca/simple-bank/pkg/domain/transfer"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/util/validator"
 )
 
 type mockResponse struct {

@@ -4,17 +4,17 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"simple-bank/pkg/domain/account"
-	"simple-bank/pkg/domain/auth"
-	"simple-bank/pkg/domain/transfer"
 	"time"
 
-	account_handler "simple-bank/pkg/gateways/http/account"
-	auth_handler "simple-bank/pkg/gateways/http/auth"
-	"simple-bank/pkg/gateways/http/middlewares"
-	transfer_handler "simple-bank/pkg/gateways/http/transfer"
-
 	"github.com/gorilla/mux"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/account"
+	"github.com/matheusmosca/simple-bank/pkg/domain/auth"
+	"github.com/matheusmosca/simple-bank/pkg/domain/transfer"
+	account_handler "github.com/matheusmosca/simple-bank/pkg/gateways/http/account"
+	auth_handler "github.com/matheusmosca/simple-bank/pkg/gateways/http/auth"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/middlewares"
+	transfer_handler "github.com/matheusmosca/simple-bank/pkg/gateways/http/transfer"
 )
 
 type API struct {

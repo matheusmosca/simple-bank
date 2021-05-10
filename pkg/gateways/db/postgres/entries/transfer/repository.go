@@ -2,7 +2,8 @@ package transfer
 
 import (
 	"database/sql"
-	"simple-bank/pkg/domain/transfer"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/transfer"
 )
 
 var _ transfer.Repository = Repository{}

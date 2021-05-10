@@ -3,7 +3,8 @@ package usecase
 import (
 	"context"
 	"log"
-	"simple-bank/pkg/domain/entities"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func (a Account) GetByCPF(ctx context.Context, CPF string) (*entities.Account, error) {

@@ -4,7 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"log"
-	"simple-bank/pkg/domain/entities"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func (r Repository) PerformTransference(ctx context.Context, input entities.PerformTransferenceInput) error {

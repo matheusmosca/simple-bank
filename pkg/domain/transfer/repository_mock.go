@@ -5,8 +5,9 @@ package transfer
 
 import (
 	"context"
-	"simple-bank/pkg/domain/entities"
 	"sync"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 // Ensure, that RepositoryMock does implement Repository.

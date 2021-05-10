@@ -3,9 +3,10 @@ package middlewares
 import (
 	"context"
 	"net/http"
-	"simple-bank/pkg/domain/auth/service"
-	"simple-bank/pkg/gateways/http/util/response"
 	"strings"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/auth/service"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/util/response"
 )
 
 type AuthContextKey string

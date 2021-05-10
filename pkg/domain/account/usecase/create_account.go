@@ -2,7 +2,8 @@ package usecase
 
 import (
 	"context"
-	"simple-bank/pkg/domain/entities"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func (a Account) Create(ctx context.Context, input entities.CreateAccountInput) (*entities.Account, error) {

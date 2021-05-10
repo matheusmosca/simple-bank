@@ -17,6 +17,7 @@ dev-docker:
 .PHONY: dev-local
 dev-local:
 	@echo "==> Starting application..."
+	go mod download
 	docker-compose up --d simple_bank_db
 	go run cmd/api/main.go
 

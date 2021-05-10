@@ -2,9 +2,10 @@ package usecase
 
 import (
 	"context"
-	"simple-bank/pkg/domain/account"
-	"simple-bank/pkg/domain/entities"
-	"simple-bank/pkg/domain/transfer"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/account"
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
+	"github.com/matheusmosca/simple-bank/pkg/domain/transfer"
 )
 
 type mockResponse struct {

@@ -2,11 +2,12 @@ package service
 
 import (
 	"os"
-	"simple-bank/pkg/domain/entities"
 	"testing"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func TestCreateToken(t *testing.T) {

@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	"simple-bank/pkg/domain/account"
-	"simple-bank/pkg/domain/transfer"
+	"github.com/matheusmosca/simple-bank/pkg/domain/account"
+	"github.com/matheusmosca/simple-bank/pkg/domain/transfer"
 )
 
 var _ transfer.UseCase = Transfer{}

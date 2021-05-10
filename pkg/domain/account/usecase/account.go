@@ -1,6 +1,6 @@
 package usecase
 
-import "simple-bank/pkg/domain/account"
+import "github.com/matheusmosca/simple-bank/pkg/domain/account"
 
 var _ account.UseCase = Account{}
 

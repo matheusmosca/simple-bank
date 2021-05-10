@@ -2,10 +2,11 @@ package usecase
 
 import (
 	"context"
-	"simple-bank/pkg/domain/entities"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func TestGetByID(t *testing.T) {

@@ -1,8 +1,8 @@
 package service
 
 import (
-	"simple-bank/pkg/domain/account"
-	"simple-bank/pkg/domain/auth"
+	"github.com/matheusmosca/simple-bank/pkg/domain/account"
+	"github.com/matheusmosca/simple-bank/pkg/domain/auth"
 )
 
 var _ auth.Service = Auth{}

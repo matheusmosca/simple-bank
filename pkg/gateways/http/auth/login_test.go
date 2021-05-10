@@ -6,10 +6,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"simple-bank/pkg/domain/auth"
-	"simple-bank/pkg/domain/auth/service"
-	"simple-bank/pkg/domain/entities"
-	"simple-bank/pkg/gateways/http/util/response"
+	"github.com/matheusmosca/simple-bank/pkg/domain/auth"
+	"github.com/matheusmosca/simple-bank/pkg/domain/auth/service"
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/util/response"
 )
 
 type noBody struct {

@@ -2,10 +2,11 @@ package service
 
 import (
 	"os"
-	"simple-bank/pkg/domain/account"
 	"testing"
 
 	"github.com/dgrijalva/jwt-go"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/account"
 )
 
 var (

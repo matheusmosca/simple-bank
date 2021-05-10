@@ -3,10 +3,11 @@ package usecase
 import (
 	"context"
 	"errors"
-	"simple-bank/pkg/domain/entities"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func TestListAccounts(t *testing.T) {

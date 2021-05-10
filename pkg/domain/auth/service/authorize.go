@@ -3,9 +3,10 @@ package service
 import (
 	"log"
 	"os"
-	"simple-bank/pkg/domain/auth"
 
 	"github.com/dgrijalva/jwt-go"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/auth"
 )
 
 // Validates the token and returns the account_id or and error

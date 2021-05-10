@@ -6,10 +6,11 @@ import (
 	"errors"
 	"net/http"
 	"net/http/httptest"
-	"simple-bank/pkg/domain/entities"
-	"simple-bank/pkg/gateways/http/middlewares"
-	"simple-bank/pkg/gateways/http/util/response"
 	"testing"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/middlewares"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/util/response"
 )
 
 func TestPerform(t *testing.T) {

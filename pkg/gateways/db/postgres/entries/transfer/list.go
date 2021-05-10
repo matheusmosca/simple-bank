@@ -2,7 +2,8 @@ package transfer
 
 import (
 	"context"
-	"simple-bank/pkg/domain/entities"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/entities"
 )
 
 func (r Repository) ListTransfersByAccountID(ctx context.Context, ID string) ([]entities.Transfer, error) {

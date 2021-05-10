@@ -1,10 +1,10 @@
 package transfer
 
 import (
-	"simple-bank/pkg/domain/transfer"
-	"simple-bank/pkg/gateways/http/util/validator"
-
 	"github.com/gorilla/mux"
+
+	"github.com/matheusmosca/simple-bank/pkg/domain/transfer"
+	"github.com/matheusmosca/simple-bank/pkg/gateways/http/util/validator"
 )
 
 type Handler struct {

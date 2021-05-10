@@ -2,11 +2,12 @@ package entities
 
 import (
 	"errors"
-	"simple-bank/pkg/common/cpf"
-	"simple-bank/pkg/common/hash"
 	"time"
 
 	"github.com/google/uuid"
+
+	"github.com/matheusmosca/simple-bank/pkg/common/cpf"
+	"github.com/matheusmosca/simple-bank/pkg/common/hash"
 )
 
 func newID() string {
