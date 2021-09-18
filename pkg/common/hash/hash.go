@@ -1,8 +1,6 @@
 package hash
 
 import (
-	"log"
-
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -16,12 +14,11 @@ func New(secret string) (string, error) {
 	return string(hash), nil
 }
 
-func CompareSecrets(secret string, hash string) bool {
+func CompareSecrets(secret string, hash string) (bool, error) {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(secret))
 	if err != nil {
-		log.Println(err)
-		return false
+		return false, err
 	}
 
-	return true
+	return true, nil
 }

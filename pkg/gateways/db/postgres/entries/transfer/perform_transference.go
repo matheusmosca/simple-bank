@@ -11,40 +11,37 @@ import (
 func (r Repository) PerformTransference(ctx context.Context, input entities.PerformTransferenceInput) error {
 	tx, err := r.DB.BeginTx(ctx, &sql.TxOptions{})
 	if err != nil {
-		log.Println(err)
 		return err
 	}
 
-	defer func() error {
+	defer func() {
 		if err != nil {
 			rollErr := tx.Rollback()
 			if rollErr != nil {
 				log.Println(err)
 			}
-			return err
 		}
-		return nil
 	}()
 
 	err = r.updateAccountBalance(ctx, tx, *input.OriginAcount)
 	if err != nil {
-		log.Println(err)
 		return err
 	}
 
 	err = r.updateAccountBalance(ctx, tx, *input.DestinationAcount)
 	if err != nil {
-		log.Println(err)
 		return err
 	}
 
 	err = r.saveTransfer(ctx, tx, input.Transfer)
 	if err != nil {
-		log.Panicln(err)
 		return err
 	}
 
-	tx.Commit()
+	err = tx.Commit()
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
@@ -82,5 +79,9 @@ func (r Repository) saveTransfer(ctx context.Context, tx *sql.Tx, trans *entitie
 		trans.Amount,
 	).Scan(&trans.CreatedAt)
 
-	return err
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

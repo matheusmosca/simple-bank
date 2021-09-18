@@ -86,7 +86,6 @@ func (c Config) DSN() string {
 	return connectString
 }
 
-
 func (c Config) URL() string {
 	if c.Postgres.SSLMode == "" {
 		c.Postgres.SSLMode = "disable"

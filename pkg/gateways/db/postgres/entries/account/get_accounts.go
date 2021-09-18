@@ -41,5 +41,9 @@ func (r Repository) GetAccounts(ctx context.Context) ([]entities.Account, error)
 		accounts = append(accounts, acc)
 	}
 
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
 	return accounts, nil
 }

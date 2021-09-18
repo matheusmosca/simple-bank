@@ -13,7 +13,7 @@ import (
 func TestList(t *testing.T) {
 	ctx := context.Background()
 	acc1, _ := entities.NewAccount("Jorge", "762.337.520-27", "123456")
-	acc1.DepositMoney(10000)
+	_ = acc1.DepositMoney(10000)
 	acc2, _ := entities.NewAccount("Jorge", "762.337.520-27", "123456")
 	transfer1, _ := entities.NewTransfer(acc1.ID, acc2.ID, 100)
 	transfer2, _ := entities.NewTransfer(acc2.ID, acc1.ID, 50)

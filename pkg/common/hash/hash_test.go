@@ -40,7 +40,13 @@ func TestCompareSecrets(t *testing.T) {
 
 	for _, tc := range tCases {
 		t.Run(tc.message, func(t *testing.T) {
-			assert.Equal(t, tc.want, CompareSecrets(tc.secret, tc.hash))
+			got, err := CompareSecrets(tc.secret, tc.hash)
+			if !tc.want {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+			}
+			assert.Equal(t, tc.want, got)
 		})
 	}
 }

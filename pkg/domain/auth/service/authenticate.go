@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"log"
 
 	"github.com/matheusmosca/simple-bank/pkg/common/cpf"
 	"github.com/matheusmosca/simple-bank/pkg/common/hash"
@@ -20,15 +19,18 @@ func (a Auth) Authenticate(ctx context.Context, CPF, secret string) (string, err
 
 	acc, err := a.accountUseCase.GetByCPF(ctx, CPF)
 	if err != nil {
-		log.Println(err)
-		//? Does not notify the client that there isn't an account with
-		//? the provided cpf
 		return "", auth.ErrWrongCredentials
 	}
 
-	if hash.CompareSecrets(secret, acc.Secret) {
-		return CreateToken(*acc)
+	isAccount, _ := hash.CompareSecrets(secret, acc.Secret)
+	if !isAccount {
+		return "", auth.ErrWrongCredentials
 	}
 
-	return "", auth.ErrWrongCredentials
+	token, err := CreateToken(*acc)
+	if err != nil {
+		return "", err
+	}
+
+	return token, nil
 }

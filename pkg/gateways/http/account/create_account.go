@@ -13,7 +13,7 @@ func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
 
 	err := response.Decode(r, &reqBody)
 	if err != nil {
-		response.SendError(w, response.ErrDecode, http.StatusBadRequest)
+		_ = response.SendError(w, response.ErrDecode, http.StatusBadRequest)
 		return
 	}
 
@@ -21,7 +21,7 @@ func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
 	err = h.validator.Validate(reqBody, &validationErrPayload)
 
 	if err != nil {
-		response.Send(
+		_ = response.Send(
 			w,
 			validationErrPayload,
 			http.StatusBadRequest,
@@ -36,15 +36,15 @@ func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
 	})
 	if err != nil {
 		if account.IsDomainError(err) {
-			response.SendError(w, err.Error(), http.StatusBadRequest)
+			_ = response.SendError(w, err.Error(), http.StatusBadRequest)
 			return
 		}
 
-		response.SendError(w, response.ErrIntervalServer, http.StatusInternalServerError)
+		_ = response.SendError(w, response.ErrIntervalServer, http.StatusInternalServerError)
 		return
 	}
 
-	response.Send(w, ResponseBody{
+	_ = response.Send(w, ResponseBody{
 		ID:        acc.ID,
 		Name:      acc.Name,
 		CPF:       acc.CPF,

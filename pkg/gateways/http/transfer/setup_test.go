@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"log"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -41,10 +40,7 @@ func fakeHandler(res mockResponse) Handler {
 }
 
 func fakeRequest(method, path string, body interface{}) *http.Request {
-	reqBody, err := json.Marshal(body)
-	if err != nil {
-		log.Println(err)
-	}
+	reqBody, _ := json.Marshal(body)
 	req := bytes.NewReader(reqBody)
 	return httptest.NewRequest(method, path, req)
 }

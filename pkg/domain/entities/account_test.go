@@ -76,11 +76,11 @@ func TestNewAccount(t *testing.T) {
 func TestDepositMoney(t *testing.T) {
 	acc, _ := NewAccount("jorge", "031.915.990-61", "123784397")
 
-	t.Run("the account should recieve money normally", func(t *testing.T) {
+	t.Run("the account should receive money normally", func(t *testing.T) {
 		acc.Balance = 10
 
 		want := acc.Balance + 300
-		acc.DepositMoney(300)
+		_ = acc.DepositMoney(300)
 
 		assert.Equal(t, acc.Balance, want)
 	})

@@ -15,7 +15,7 @@ func (h Handler) GetBalance(w http.ResponseWriter, r *http.Request) {
 	acc, err := h.usecase.GetByID(r.Context(), accountID)
 	if err != nil {
 		if account.IsDomainError(err) {
-			response.Send(
+			_ = response.Send(
 				w,
 				response.ErrorResponse{Message: err.Error()},
 				http.StatusNotFound,
@@ -23,11 +23,11 @@ func (h Handler) GetBalance(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		response.SendError(w, response.ErrIntervalServer, http.StatusInternalServerError)
+		_ = response.SendError(w, response.ErrIntervalServer, http.StatusInternalServerError)
 		return
 	}
 
-	response.Send(
+	_ = response.Send(
 		w,
 		BalanceResponse{Balance: acc.Balance},
 		http.StatusOK,

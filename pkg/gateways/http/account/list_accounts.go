@@ -9,7 +9,7 @@ import (
 func (h Handler) List(w http.ResponseWriter, r *http.Request) {
 	accounts, err := h.usecase.List(r.Context())
 	if err != nil {
-		response.SendError(w, response.ErrIntervalServer, http.StatusInternalServerError)
+		_ = response.SendError(w, response.ErrIntervalServer, http.StatusInternalServerError)
 		return
 	}
 
@@ -25,5 +25,5 @@ func (h Handler) List(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	response.Send(w, res, http.StatusOK)
+	_ = response.Send(w, res, http.StatusOK)
 }

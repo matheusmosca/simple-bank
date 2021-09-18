@@ -20,7 +20,7 @@ func Authorize(next http.Handler) http.Handler {
 
 		accountID, err := service.Authorize(token)
 		if err != nil {
-			response.SendError(w, err.Error(), http.StatusUnauthorized)
+			_ = response.SendError(w, err.Error(), http.StatusUnauthorized)
 			return
 		}
 

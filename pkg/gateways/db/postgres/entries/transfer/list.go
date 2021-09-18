@@ -28,18 +28,21 @@ func (r Repository) ListTransfersByAccountID(ctx context.Context, ID string) ([]
 
 	for rows.Next() {
 		var t entities.Transfer
-		rows.Scan(
+		if err := rows.Scan(
 			&t.ID,
 			&t.AccountOriginID,
 			&t.AccountDestinationID,
 			&t.Amount,
 			&t.CreatedAt,
-		)
-		if err != nil {
+		); err != nil {
 			return nil, err
 		}
 
 		transfers = append(transfers, t)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
 	}
 
 	return transfers, nil

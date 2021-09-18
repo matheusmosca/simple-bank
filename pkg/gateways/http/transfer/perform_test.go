@@ -18,7 +18,7 @@ func TestPerform(t *testing.T) {
 	// Fake data
 	authContextID := middlewares.AuthContextKey("account_id")
 	acc1, _ := entities.NewAccount("Jorge", "762.337.520-27", "123456")
-	acc1.DepositMoney(10000)
+	_ = acc1.DepositMoney(10000)
 	amount := 1000
 	acc2, _ := entities.NewAccount("Jorge", "762.337.520-27", "123456")
 	transfer, _ := entities.NewTransfer(acc1.ID, acc2.ID, amount)

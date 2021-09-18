@@ -1,7 +1,6 @@
 package service
 
 import (
-	"log"
 	"os"
 
 	"github.com/dgrijalva/jwt-go"
@@ -23,7 +22,6 @@ func Authorize(token string) (interface{}, error) {
 	})
 
 	if err != nil || !j.Valid {
-		log.Println(err)
 		return nil, auth.ErrInvalidToken
 	}
 
