@@ -29,7 +29,7 @@ test:
 .PHONY: test-coverage
 test-coverage:
 	@echo "==> Checking test coverage..."
-	go get github.com/kyoh86/richgo
+	go install github.com/kyoh86/richgo@latest
 	@richgo test -failfast -coverprofile=coverage.out ./...
 	@go tool cover -html=coverage.out -o coverage.html
 
@@ -40,3 +40,10 @@ generate:
 	@go generate ./...
 	go mod tidy
 
+.PHONY: lint
+lint:
+ifeq (, $(shell which $$(go env GOPATH)/bin/golangci-lint))
+	@echo "==> golangci-lint not installed, trying to install it..."
+	curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $$(go env GOPATH)/bin v1.42.1
+endif
+	$$(go env GOPATH)/bin/golangci-lint run -c ./.golangci.yml ./...

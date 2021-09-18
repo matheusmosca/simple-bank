@@ -1,0 +1,54 @@
+run:
+  deadline: 5m
+  timeout: 5m
+  tests: true
+
+linters:
+  enable:
+    - megacheck
+    - govet
+    - dogsled
+    - errcheck
+    - exhaustive
+    - nestif
+    - gocyclo
+    - gofmt
+    - gosimple
+    - misspell
+    - unused
+  disable:
+    - maligned
+    - prealloc
+
+output:
+  format: 'colored-line-number'
+
+linters-settings:
+  dogsled:
+    max-blank-identifiers: 2
+
+  exhaustive:
+    check-generated: false
+    default-signifies-exhaustive: false
+
+  nestif:
+    min-complexity: 4
+
+  gocyclo:
+    min-complexity: 20
+
+  gofmt:
+    simplify: true
+
+  gosimple:
+    go: "1.16"
+    checks: [ "all" ]
+
+  govet:
+    check-shadowing: false
+
+  misspell:
+    locale: US
+
+  unused:
+    go: "1.16"
